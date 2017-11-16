@@ -1,9 +1,23 @@
 pipeline {
   agent any
   stages {
-    stage('Step1') {
+    stage('Stage 1') {
+      parallel {
+        stage('Step1') {
+          steps {
+            echo 'Hello'
+          }
+        }
+        stage('Stage2') {
+          steps {
+            echo 'Message 2'
+          }
+        }
+      }
+    }
+    stage('Stage 3') {
       steps {
-        echo 'Hello'
+        pwd(tmp: true)
       }
     }
   }
